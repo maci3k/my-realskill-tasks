@@ -1,4 +1,4 @@
-##JavaScript Scaffolding
+##pure-javascript
 
 You can quickly create JavaScript tasks by cloning the scaffolding repo. 
 You don't have to bother with karma/coverage/reporters/gruntfile/npm configuration.
