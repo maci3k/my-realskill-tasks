@@ -11,20 +11,30 @@
             karma: {
                 options: {
                     configFile: 'test/karma.conf.js'
-                }, unit: {
+                },
+                verify: {
                     singleRun: true
-                }, dev: {
+                },
+                default: {
                     singleRun: false
                 }
-            }, jshint: {
+            },
+            jshint: {
                 options: {
                     jshintrc: true,
-                    reporter: 'checkstyle',
-                    reporterOutput: 'target/jshint.xml'
-                }, all: ['**/*.js']
+                    src: ['**/*.js']
+                },
+                default: ['<%=jshint.options.src%>'],
+                verify: {
+                    options: {
+                        reporter: 'checkstyle',
+                        reporterOutput: 'target/jshint.xml'
+                    }
+                }
             }
         });
 
-        grunt.registerTask('verify', ['jshint', 'karma:unit']);
+        grunt.registerTask('verify', ['jshint:verify', 'karma:verify']);
+        grunt.registerTask('default', ['jshint:default', 'karma:default']);
     };
 })();
