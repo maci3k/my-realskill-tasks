@@ -13,29 +13,25 @@ module.exports = function (config)
         frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
-        files: ['app/scripts/**/*.js', 'test/spec/**/*.js'],
+        files: ['app/**/*.js','test/unit/**/*.spec.js'],
 
         // list of files / patterns to exclude
         exclude: [],
 
-        // test results reporter to use
-        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-
-        reporters: ['spec', 'coverage'],
+        reporters: ['spec', 'coverage', 'junit'],
 
         preprocessors: {
             'app/**/*.js': 'coverage'
         },
 
         coverageReporter: {
-            dir: 'target/', reporters: [{
-                type: 'html'
-            }, {
-                type: 'cobertura', file: 'coverage.xml'
-            }]
-
+            dir: 'target/', type: 'cobertura', file: 'coverage.xml'
         },
 
+
+        junitReporter: {
+            outputFile: 'target/test-results.xml'
+        },
 
         // web server port
         port: 8080,
@@ -51,11 +47,11 @@ module.exports = function (config)
         browsers: ['PhantomJS'],
 
         // Which plugins to enable
-        plugins: ['karma-phantomjs-launcher', 'karma-coverage', 'karma-jasmine', 'karma-spec-reporter'],
+        plugins: ['karma-phantomjs-launcher', 'karma-jasmine', 'karma-spec-reporter', 'karma-junit-reporter', 'karma-coverage'],
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false,
+        singleRun: true,
 
         colors: true,
 
@@ -65,7 +61,6 @@ module.exports = function (config)
 
         //https://github.com/karma-runner/karma/issues/895
         usePolling: true
-
         // Uncomment the following lines if you are using grunt's server to run the tests
         // proxies: {
         //   '/': 'http://localhost:9000/'
