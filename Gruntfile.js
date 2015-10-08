@@ -12,29 +12,34 @@
                 options: {
                     configFile: 'test/karma.conf.js'
                 },
-                verify: {
+                unit: {
                     singleRun: true
                 },
-                default: {
+                dev: {
                     singleRun: false
                 }
             },
             jshint: {
-                options: {
-                    jshintrc: true,
-                    src: ['**/*.js']
+                default: {
+                    options: {
+                        jshintrc: true
+                    },
+                    files: {
+                        src: ['app/**/*.js', 'test/**/*.js']
+                    }
                 },
-                default: ['<%=jshint.options.src%>'],
                 verify: {
                     options: {
+                        jshintrc: true,
                         reporter: 'checkstyle',
                         reporterOutput: 'target/jshint.xml'
-                    }
+                    },
+                    files: {src: ['app/**/*.js', 'test/**/*.js']}
                 }
             }
         });
 
-        grunt.registerTask('verify', ['jshint:verify', 'karma:verify']);
-        grunt.registerTask('default', ['jshint:default', 'karma:default']);
+        grunt.registerTask('verify', ['jshint:verify', 'karma:unit']);
+        grunt.registerTask('test:dev', ['karma:dev']);
     };
 })();
