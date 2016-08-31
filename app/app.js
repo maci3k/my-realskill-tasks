@@ -6,7 +6,7 @@
 
     window.app = {
 
-        convertCelcius: function (temperature) {
+        convertCelsius: function (temperature) {
             //put your code here
         },
 
