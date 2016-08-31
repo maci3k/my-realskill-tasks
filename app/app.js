@@ -6,16 +6,16 @@
 
     window.app = {
 
-        getDescendingNumbers: function (start, stop)
-        {
-            if (typeof start !== 'number' || typeof stop !== 'number' || start < stop) {
-                return false;
-            }
-            var descendingNumbers = start;
-            for (var i = start - 1; i >= stop; i--) {
-                descendingNumbers = descendingNumbers + ' ' + i;
-            }
-            return descendingNumbers;
+        convertCelcius: function (temperature) {
+            //put your code here
+        },
+
+        convertFahrenheit: function (temperature) {
+            //put your code here
+        },
+
+        convertKelvin: function (temperature) {
+            //put your code here
         }
     };
 
