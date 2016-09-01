@@ -1,17 +1,21 @@
---statement="../solution/schema.sql" Seed schema
---statement insert valid row
-INSERT INTO users(email) VALUES ('example@email.com'),('another@email.com');
 --statement
-SELECT * FROM users;
---expect 2 users
-id,email
-1,example@email.com
-2,another@email.com
---statement="statements/select_all_users.sql" Select all users
---expect="expectations/expected_users.csv" 2 users
---statement insert incorrect row
-INSERT INTO users(email) VALUES (1,2,3,4)
---expect syntax error
-name,code
-error,SQL-42601
---required expression="users" file="../solution/schema.sql" use "users" table
+DROP TABLE IF EXISTS workers;
+
+--statement="../solution/schema.sql" Seed schema
+
+--statement="../solution/insert.sql" Insert some data
+
+--statement="statements/select_all_workers.sql" Show all workers
+--expect="expectations/expected_insert.csv" 3 workers
+
+--statement="statements/insert_data.sql" Insert more data
+--statement="../solution/show_retired.sql" Show retired workers
+--expect="expectations/expected_retired.csv" retired workers
+
+--statement="../solution/raise_salary.sql" Raise salary
+--statement="statements/select_all_workers.sql" Show all workers
+--expect="expectations/expected_raise.csv" workers with updated salary
+
+--statement="../solution/make_retired.sql" Make retired
+--statement="statements/select_all_workers.sql" Show all workers
+--expect="expectations/expected_made_retired.csv" workers older than 65 years old in 2016 made retired
